@@ -9,7 +9,7 @@ var TypeaheadOption = React.createClass({
     customClasses: React.PropTypes.object,
     customValue: React.PropTypes.string,
     onClick: React.PropTypes.func,
-    children: React.PropTypes.string,
+    children: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.array]),
     hover: React.PropTypes.bool
   },
 
@@ -36,10 +36,21 @@ var TypeaheadOption = React.createClass({
     return (
       <li className={classList} onClick={this._onClick}>
         <a href="javascript: void 0;" className={this._getClasses()} ref="anchor">
-          { this.props.children }
+          { this.props.children[0] }
         </a>
+        { this.props.children[1] && (
+          <div className="custom-option-child" onClick={this._onCustomOptionChildClick}>
+            { this.props.children[ 1 ] }
+          </div>
+        )}
       </li>
     );
+  },
+
+  _onCustomOptionChildClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.onCustomOptionChildClick(e);
   },
 
   _getClasses: function() {

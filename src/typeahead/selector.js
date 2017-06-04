@@ -14,6 +14,11 @@ var TypeaheadSelector = React.createClass({
     customValue: React.PropTypes.string,
     selectionIndex: React.PropTypes.number,
     onOptionSelected: React.PropTypes.func,
+    onCustomOptionChildClick: React.PropTypes.func,
+    customOptionChild: React.PropTypes.oneOfType([
+      React.PropTypes.element,
+      React.PropTypes.func
+    ]),
     displayOption: React.PropTypes.func.isRequired,
     defaultClassNames: React.PropTypes.bool,
     areResultsTruncated: React.PropTypes.bool,
@@ -27,6 +32,8 @@ var TypeaheadSelector = React.createClass({
       allowCustomValues: 0,
       customValue: null,
       onOptionSelected: function(option) { },
+      customOptionChild: null,
+      onCustomOptionChildClick: () => {},
       defaultClassNames: true
     };
   },
@@ -66,8 +73,11 @@ var TypeaheadSelector = React.createClass({
         <TypeaheadOption ref={uniqueKey} key={uniqueKey}
           hover={this.props.selectionIndex === i + customValueOffset}
           customClasses={this.props.customClasses}
-          onClick={this._onClick.bind(this, result)}>
+          onClick={this._onClick.bind(this, result)}
+          onCustomOptionChildClick={this.props.onCustomOptionChildClick.bind(this, result)}
+        >
           { displayString }
+          { this.props.customOptionChild }
         </TypeaheadOption>
       );
     }, this);
@@ -96,7 +106,7 @@ var TypeaheadSelector = React.createClass({
 
   _onClick: function(result, event) {
     return this.props.onOptionSelected(result, event);
-  }
+  },
 
 });
 

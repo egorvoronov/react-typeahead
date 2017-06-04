@@ -54,7 +54,12 @@ var Typeahead = React.createClass({
       React.PropTypes.element,
       React.PropTypes.func
     ]),
-    showOptionsWhenEmpty: React.PropTypes.bool
+    showOptionsWhenEmpty: React.PropTypes.bool,
+    onCustomOptionChildClick: React.PropTypes.func,
+    customOptionChild: React.PropTypes.oneOfType([
+      React.PropTypes.element,
+      React.PropTypes.func
+    ]),
   },
 
   getDefaultProps: function() {
@@ -81,7 +86,9 @@ var Typeahead = React.createClass({
       defaultClassNames: true,
       customListComponent: TypeaheadSelector,
       showOptionsWhenEmpty: false,
-      resultsTruncatedMessage: null
+      resultsTruncatedMessage: null,
+      customOptionChild: null,
+      onCustomOptionChildClick: () => {},
     };
   },
 
@@ -171,7 +178,10 @@ var Typeahead = React.createClass({
         customClasses={this.props.customClasses}
         selectionIndex={this.state.selectionIndex}
         defaultClassNames={this.props.defaultClassNames}
-        displayOption={Accessor.generateOptionToStringFor(this.props.displayOption)} />
+        displayOption={Accessor.generateOptionToStringFor(this.props.displayOption)}
+        customOptionChild={this.props.customOptionChild}
+        onCustomOptionChildClick={this.props.onCustomOptionChildClick}
+      />
     );
   },
 
