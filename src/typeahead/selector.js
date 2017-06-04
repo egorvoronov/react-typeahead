@@ -1,4 +1,5 @@
 var React = require('react');
+var PropTypes = require('prop-types');
 var TypeaheadOption = require('./option');
 var classNames = require('classnames');
 
@@ -8,21 +9,21 @@ var classNames = require('classnames');
  */
 var TypeaheadSelector = React.createClass({
   propTypes: {
-    options: React.PropTypes.array,
-    allowCustomValues: React.PropTypes.number,
-    customClasses: React.PropTypes.object,
-    customValue: React.PropTypes.string,
-    selectionIndex: React.PropTypes.number,
-    onOptionSelected: React.PropTypes.func,
-    onCustomOptionChildClick: React.PropTypes.func,
-    customOptionChild: React.PropTypes.oneOfType([
-      React.PropTypes.element,
-      React.PropTypes.func
+    options: PropTypes.array,
+    allowCustomValues: PropTypes.number,
+    customClasses: PropTypes.object,
+    customValue: PropTypes.string,
+    selectionIndex: PropTypes.number,
+    onOptionSelected: PropTypes.func,
+    onCustomOptionChildClick: PropTypes.func,
+    customOptionChild: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func
     ]),
-    displayOption: React.PropTypes.func.isRequired,
-    defaultClassNames: React.PropTypes.bool,
-    areResultsTruncated: React.PropTypes.bool,
-    resultsTruncatedMessage: React.PropTypes.string
+    displayOption: PropTypes.func.isRequired,
+    defaultClassNames: PropTypes.bool,
+    areResultsTruncated: PropTypes.bool,
+    resultsTruncatedMessage: PropTypes.string
   },
 
   getDefaultProps: function() {
