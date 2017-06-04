@@ -1,5 +1,6 @@
 var Accessor = require('../accessor');
 var React = require('react');
+var createClass = require('create-react-class');
 var PropTypes = require('prop-types');
 var TypeaheadSelector = require('./selector');
 var KeyEvent = require('../keyevent');
@@ -12,7 +13,7 @@ var classNames = require('classnames');
  * Renders an text input that shows options nearby that you can use the
  * keyboard or mouse to select.  Requires CSS for MASSIVE DAMAGE.
  */
-var Typeahead = React.createClass({
+var Typeahead = createClass({
   propTypes: {
     name: PropTypes.string,
     customClasses: PropTypes.object,
