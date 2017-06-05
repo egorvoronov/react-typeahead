@@ -133,11 +133,6 @@ var Typeahead = createClass({
     return searchOptions(value, options);
   },
 
-  setEntryText: function(value) {
-    this.refs.entry.value = value;
-    this.onChange(value);
-  },
-
   focus: function(){
     this.refs.entry.focus()
   },
@@ -291,16 +286,17 @@ var Typeahead = createClass({
     this._nav(-1);
   },
 
-  _onChange: function(event) {
-    this.onChange(event.target.value);
+  setEntryText: function(value) {
+      this.refs.entry.value = value;
+      this.refs.entry.dispatchEvent(new Event('input', { bubbles: true }));
   },
 
-  onChange: function(value) {
-    if (this.props.onChange) {
-      this.props.onChange(value);
-    }
+  _onChange: function(event) {
+      if (this.props.onChange) {
+          this.props.onChange(event);
+      }
 
-    this._onTextEntryUpdated();
+      this._onTextEntryUpdated();
   },
 
   _onKeyDown: function(event) {

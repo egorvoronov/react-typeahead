@@ -50,8 +50,6 @@ var TypeaheadOption = createClass({
   },
 
   _onCustomOptionChildClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
     this.props.onCustomOptionChildClick(e);
   },
 
