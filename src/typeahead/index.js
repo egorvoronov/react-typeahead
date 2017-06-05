@@ -135,7 +135,7 @@ var Typeahead = createClass({
 
   setEntryText: function(value) {
     this.refs.entry.value = value;
-    this._onTextEntryUpdated();
+    this.onChange(value);
   },
 
   focus: function(){
@@ -292,8 +292,12 @@ var Typeahead = createClass({
   },
 
   _onChange: function(event) {
+    this.onChange(event.target.value);
+  },
+
+  onChange: function(value) {
     if (this.props.onChange) {
-      this.props.onChange(event);
+      this.props.onChange(value);
     }
 
     this._onTextEntryUpdated();
