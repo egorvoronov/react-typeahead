@@ -66,6 +66,7 @@ var Typeahead = createClass({
         topOption: PropTypes.string,
         showTopOption: PropTypes.bool,
         onTopOptionClick: PropTypes.func,
+        customOptionSelectedHandler: PropTypes.bool,
     },
 
     getDefaultProps: function () {
@@ -98,6 +99,7 @@ var Typeahead = createClass({
             topOption: '',
             showTopOption: false,
             onTopOptionClick: noop,
+            customOptionSelectedHandler: false,
         };
     },
 
@@ -208,6 +210,9 @@ var Typeahead = createClass({
     },
 
     _onOptionSelected: function (option, event) {
+        if (this.props.customOptionSelectedHandler) {
+            return this.props.onOptionSelected(option, event);
+        }
         var nEntry = this.refs.entry;
         nEntry.focus();
 
