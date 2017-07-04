@@ -17,8 +17,7 @@ var TypeaheadSelector = createClass({
         customValue: PropTypes.string,
         selectionIndex: PropTypes.number,
         onOptionSelected: PropTypes.func,
-        onCustomOptionChildClick: PropTypes.func,
-        customOptionChild: PropTypes.oneOfType([
+        customOptionChildRenderer: PropTypes.oneOfType([
             PropTypes.element,
             PropTypes.func
         ]),
@@ -39,9 +38,7 @@ var TypeaheadSelector = createClass({
             customValue: null,
             onOptionSelected: function (option) {
             },
-            customOptionChild: null,
-            onCustomOptionChildClick: () => {
-            },
+            customOptionChildRenderer: noop,
             defaultClassNames: true,
             topOption: '',
             showTopOption: false,
@@ -99,10 +96,9 @@ var TypeaheadSelector = createClass({
                                  hover={this.props.selectionIndex === i + customValueOffset}
                                  customClasses={this.props.customClasses}
                                  onClick={this._onClick.bind(this, result)}
-                                 onCustomOptionChildClick={this.props.onCustomOptionChildClick.bind(this, result)}
                 >
                     { displayString }
-                    { this.props.customOptionChild }
+                    { this.props.customOptionChildRenderer(result) }
                 </TypeaheadOption>
             );
         }, this);

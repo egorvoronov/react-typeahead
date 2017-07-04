@@ -58,8 +58,7 @@ var Typeahead = createClass({
             PropTypes.func
         ]),
         showOptionsWhenEmpty: PropTypes.bool,
-        onCustomOptionChildClick: PropTypes.func,
-        customOptionChild: PropTypes.oneOfType([
+        customOptionChildRenderer: PropTypes.oneOfType([
             PropTypes.element,
             PropTypes.func
         ]),
@@ -94,8 +93,7 @@ var Typeahead = createClass({
             customListComponent: TypeaheadSelector,
             showOptionsWhenEmpty: false,
             resultsTruncatedMessage: null,
-            customOptionChild: null,
-            onCustomOptionChildClick: noop,
+            customOptionChildRenderer: noop,
             topOption: '',
             showTopOption: false,
             onTopOptionClick: noop,
@@ -188,8 +186,7 @@ var Typeahead = createClass({
                 selectionIndex={this.state.selectionIndex}
                 defaultClassNames={this.props.defaultClassNames}
                 displayOption={Accessor.generateOptionToStringFor(this.props.displayOption)}
-                customOptionChild={this.props.customOptionChild}
-                onCustomOptionChildClick={this.props.onCustomOptionChildClick}
+                customOptionChildRenderer={this.props.customOptionChildRenderer}
                 topOption={this.props.topOption}
                 showTopOption={this.props.showTopOption}
                 onTopOptionClick={this.props.onTopOptionClick}

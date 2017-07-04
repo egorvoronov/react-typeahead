@@ -49,16 +49,12 @@ var TypeaheadOption = createClass({
                     { title }
                 </a>
                 { customOptionChild && (
-                    <div className="custom-option-child" onClick={this._onCustomOptionChildClick}>
+                    <div className="custom-option-child">
                         { customOptionChild }
                     </div>
                 )}
             </li>
         );
-    },
-
-    _onCustomOptionChildClick(e) {
-        this.props.onCustomOptionChildClick(e);
     },
 
     _getClasses: function () {
