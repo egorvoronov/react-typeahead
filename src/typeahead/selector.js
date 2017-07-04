@@ -51,7 +51,7 @@ var TypeaheadSelector = createClass({
 
     render: function () {
         // Don't render if there are no options to display
-        if (!this.props.options.length && this.props.allowCustomValues <= 0) {
+        if (!this.props.options.length && this.props.allowCustomValues <= 0 && !this.props.showTopOption) {
             return false;
         }
 
@@ -77,10 +77,10 @@ var TypeaheadSelector = createClass({
             );
         }
 
-        var results = [];
+        var topOptionValue = null;
         if (this.props.showTopOption) {
             customValueOffset++;
-            results.push(
+            topOptionValue = (
                 <TypeaheadOption ref={this.props.topOption} key={this.props.topOption}
                                  hover={this.props.selectionIndex === customValueOffset}
                                  customClasses={this.props.customClasses}
@@ -91,7 +91,7 @@ var TypeaheadSelector = createClass({
             );
         }
 
-        results = results.concat(this.props.options.map(function (result, i) {
+        var results = this.props.options.map(function (result, i) {
             var displayString = this.props.displayOption(result, i);
             var uniqueKey = displayString + '_' + i;
             return (
@@ -105,7 +105,7 @@ var TypeaheadSelector = createClass({
                     { this.props.customOptionChild }
                 </TypeaheadOption>
             );
-        }, this));
+        }, this);
 
         if (this.props.areResultsTruncated && this.props.resultsTruncatedMessage !== null) {
             var resultsTruncatedClasses = {
@@ -123,6 +123,7 @@ var TypeaheadSelector = createClass({
 
         return (
             <ul className={classList}>
+                { topOptionValue }
                 { customValue }
                 { results }
             </ul>
