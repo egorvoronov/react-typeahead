@@ -84,6 +84,7 @@ var TypeaheadSelector = createClass({
                                  onClick={this.props.onTopOptionClick}
                 >
                     { this.props.topOption }
+                    { this.props.customOptionChildRenderer(this.props.topOption) }
                 </TypeaheadOption>
             );
         }
