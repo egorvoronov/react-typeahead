@@ -311,6 +311,7 @@ var Typeahead = createClass({
     setEntryText: function (value) {
         this.refs.entry.value = value;
         this.refs.entry.dispatchEvent(new Event('input', { bubbles: true }));
+        this.focus();
     },
 
     _onChange: function (event) {
